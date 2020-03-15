@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
-* Студент: [Андрей](https://up.htmlacademy.ru/javascript/19/user/951025).
-* Наставник: `Неизвестно`.
+* Студент: [Андрей](https://up.htmlacademy.ru/javascript/18/user/951025).
+* Наставник: `Дмитрий Невзоров`.
 
 ---
 
@@ -48,5 +48,5 @@ git clone SSH-адрес_вашего_форка
 
 Репозиторий создан для обучения на интенсивном онлайн‑курсе «[Профессиональный JavaScript](https://htmlacademy.ru/intensive/javascript)», уровень 1 от [HTML Academy](https://htmlacademy.ru).
 
-[travis-image]: https://travis-ci.com/htmlacademy-javascript/951025-keksobooking-19.svg?branch=master
-[travis-url]: https://travis-ci.com/htmlacademy-javascript/951025-keksobooking-19
+[travis-image]: https://travis-ci.com/htmlacademy-javascript/951025-keksobooking-18.svg?branch=master
+[travis-url]: https://travis-ci.com/htmlacademy-javascript/951025-keksobooking-18

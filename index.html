@@ -40,10 +40,10 @@
         <form action="#" class="map__filters" autocomplete="off">
           <select name="housing-type" id="housing-type" class="map__filter">
             <option value="any" selected>Любой тип жилья</option>
-            <option value="palace">Дворец</option>
-            <option value="flat">Квартира</option>
-            <option value="house">Дом</option>
-            <option value="bungalo">Бунгало</option>
+            <option class= "palace" value="palace">Дворец</option>
+            <option class="flat" value="flat">Квартира</option>
+            <option class="house" value="house">Дом</option>
+            <option class="bungalo" value="bungalo">Бунгало</option>
           </select>
           <select name="housing-price" id="housing-price" class="map__filter">
             <option value="any" selected>Любая</option>
@@ -84,7 +84,7 @@
     <!-- Форма объявления -->
     <section class="notice">
       <h2 class="notice__title">Ваше объявление</h2>
-      <form class="ad-form ad-form--disabled" method="post" enctype="multipart/form-data" autocomplete="off">
+      <form class="ad-form ad-form--disabled" method="post" action="https://js.dump.academy/keksobooking" enctype="multipart/form-data" autocomplete="off">
         <fieldset class="ad-form-header">
           <legend class="ad-form-header__title">Ваша фотография (для карты)</legend>
           <div class="ad-form-header__upload">
@@ -93,18 +93,18 @@
             </div>
             <div class="ad-form__field">
               <input type="file" id="avatar" name="avatar" class="ad-form-header__input visually-hidden">
-              <label class="ad-form-header__drop-zone" for="avatar">Загрузить<br>фото...</label>
+              <label class="ad-form-header__drop-zone" for="avatar">Загрузите или&nbsp;перетащите сюда фото</label>
             </div>
             <p class="ad-form-header__info">Заполните все обязательные поля, назначьте цену, загрузите фотографии. Придумайте интересное описание. Оно сделает объявление более живым и привлекательным. Получившееся объявление должно давать гостям полное представление о вашем жилье.</p>
           </div>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="title">Заголовок объявления</label>
-          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио">
+          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио" minlength="30" maxlength="100" required>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес</label>
-          <input id="address" name="address" type="text">
+          <input id="address" class="input-address" name="address" type="text" readonly>
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -117,7 +117,7 @@
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-          <input id="price" name="price" type="number" placeholder="5000">
+          <input id="price" name="price" type="number" min="1000" placeholder="1000" max="1000000" required>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time">
           <label class="ad-form__label" for="timein">Время заезда и выезда</label>
@@ -133,7 +133,7 @@
           </select>
         </fieldset>
         <fieldset class="ad-form__element">
-          <label class="ad-form__label" for="room_number">Количество комнат</label>
+          <label class="ad-form__label" for="room_number">Кол-во комнат</label>
           <select id="room_number" name="rooms">
             <option value="1" selected>1 комната</option>
             <option value="2">2 комнаты</option>
@@ -144,9 +144,9 @@
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="capacity">Количество мест</label>
           <select id="capacity" name="capacity">
-            <option value="3" selected>для 3 гостей</option>
+            <option value="3">для 3 гостей</option>
             <option value="2">для 2 гостей</option>
-            <option value="1">для 1 гостя</option>
+            <option value="1" selected>для 1 гостя</option>
             <option value="0">не для гостей</option>
           </select>
         </fieldset>
@@ -170,11 +170,11 @@
           <textarea id="description" name="description" placeholder="Здесь расскажите о том, какое ваше жилье замечательное и вообще"></textarea>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
-          <label class="ad-form__label">Фотография жилья</label>
+          <label class="ad-form__label">Фотографии жилья</label>
           <div class="ad-form__photo-container">
             <div class="ad-form__upload">
-              <input type="file" id="images" name="images" class="ad-form__input visually-hidden">
-              <label for="images" class="ad-form__drop-zone">Загрузить<br>фото...</label>
+              <input type="file" id="images" name="images" class="ad-form__input visually-hidden" accept="image/*" multiple>
+              <label for="images" class="ad-form__drop-zone">Загрузите или&nbsp;перетащите сюда фото</label>
             </div>
             <div class="ad-form__photo"></div>
           </div>
@@ -240,13 +240,24 @@
     </div>
   </template>
 
-  <!-- Сообщение об ошибке создания объявления -->
+  <!-- Сообщение об ошибке создания объеявления -->
   <template id="error">
     <div class="error">
       <p class="error__message">Ошибка загрузки объявления</p>
-      <button class="error__button">Попробовать снова</button>
+      <button class="error__button" href="#">Попробовать снова</button>
     </div>
   </template>
+
+<script src="js/backend.js"></script>
+<script src="js/util.js"></script>
+<script src="js/cardRender.js"></script>
+<script src="js/pinsRender.js"></script>
+<script src="js/debounce.js"></script>
+<script src="js/mapFilter.js"></script>
+<script src="js/page.js"></script>
+<script src="js/form.js"></script>
+<script src="js/avatar.js"></script>
+<script src="js/apartmentPhoto.js"></script>
 
 </body>
 </html>

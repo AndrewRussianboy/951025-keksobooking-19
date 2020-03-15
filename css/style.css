@@ -556,7 +556,7 @@ fieldset {
 
 .ad-form-header__drop-zone {
   height: 70px;
-  padding: 20px 10px 5px;
+  padding: 10px 10px 5px;
 
   text-align: center;
   font-size: 14px;
@@ -568,12 +568,16 @@ fieldset {
   cursor: pointer;
 }
 
+.ad-form-header__drop-zone.highlight {
+  border-color: purple;
+}
+
 .ad-form-header__drop-zone:hover {
   color: #ff5635;
 }
 
 .ad-form-header__drop-zone:focus,
-.ad-form-header__input:focus + .ad-form-header__drop-zone {
+.ad-form-header__input:focus + .form-header__drop-zone {
   color: #ff5635;
   -webkit-box-shadow: 0 0 2px 2px #ff6547;
           box-shadow: 0 0 2px 2px #ff6547;
@@ -781,9 +785,8 @@ fieldset {
 }
 
 .ad-form__drop-zone {
-  width: 100%;
   height: 70px;
-  padding: 20px 10px 5px;
+  padding: 10px 10px 5px;
 
   text-align: center;
   font-size: 14px;
