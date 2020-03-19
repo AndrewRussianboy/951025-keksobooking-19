@@ -8,8 +8,13 @@
   var renderApartments = window.pinsRender.renderApartments;
   var removePins = window.pinsRender.removePins;
   var removeCard = window.cardRender.removeCard;
-  var debounce = window.debounce.deleteThrottling;
-  var checkIsSubArray = window.util.checkIsSubArray;
+  var onFilterDebounce = window.debounce.deleteThrottling;
+
+  var checkIsSubArray = function (haystack, needle) {
+    return needle.every(function (item) {
+      return haystack.includes(item);
+    });
+  };
 
   var typeOfHouseElement = document.querySelector('#housing-type');
   var filterByType = function (item) {
@@ -78,7 +83,7 @@
   };
 
   var mapFiltersElement = document.querySelector('.map__filters');
-  mapFiltersElement.addEventListener('change', debounce(updateApartments));
+  mapFiltersElement.addEventListener('change', onFilterDebounce(updateApartments));
 
   window.mapFilter = {
     chart: mapFiltersElement,

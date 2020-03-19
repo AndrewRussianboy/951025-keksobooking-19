@@ -73,25 +73,16 @@
 
     var closePopup = function () {
       mapCardPopupElement.remove();
-      if (mapCardPopupElement) {
-        document.addEventListener('keydown', onPopupEscPress);
-      } else {
-        document.removeEventListener('keydown', onPopupEscPress);
-      }
     };
 
     popupCloseElement.addEventListener('click', function () {
       closePopup();
     });
 
-    var closePopupEsc = function (evt) {
-      isEscEvent(evt, closePopup);
-    };
-
     if (mapCardPopupElement) {
-      document.addEventListener('keydown', closePopupEsc);
+      document.addEventListener('keydown', onPopupEscPress);
     } else {
-      document.removeEventListener('keydown', closePopupEsc);
+      document.removeEventListener('keydown', onPopupEscPress);
     }
 
     mapSectionElement.insertBefore(cardElement, filtersContainerElement);

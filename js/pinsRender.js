@@ -28,7 +28,7 @@
     for (var i = 0; i < apartments.length; i++) {
       var mapPin = renderPin(apartments[i]);
 
-      var getChangeCard = function () {
+      var onCardChange = function () {
         var k = i;
         return function () {
           removeCard();
@@ -36,7 +36,7 @@
         };
       };
       var mapPinChild = mapPin.querySelector('.map__pin');
-      mapPinChild.addEventListener('click', getChangeCard());
+      mapPinChild.addEventListener('click', onCardChange());
 
       fragment.appendChild(mapPin);
     }

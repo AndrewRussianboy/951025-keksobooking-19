@@ -4,12 +4,11 @@
   var PIN_HEIGHT = 62;
   var PIN_WIDTH = 62;
   var MAP_PIN_TRIANGLE_HEIGHT = 22;
-  var TOP_RESTRICTION_FOR_MAP_PIN = 46;
-  var BOTTOM_RESTRICTION_FOR_MAP_PIN = 546;
+  var TOP_RESTRICTION_FOR_MAP_PIN = 130;
+  var BOTTOM_RESTRICTION_FOR_MAP_PIN = 630;
 
   var load = window.backend.load;
   var isEnterEvent = window.util.isEnterEvent;
-  var Coordinate = window.util.Coordinate;
   var updateApartments = window.mapFilter.updateApartments;
   window.page = {};
   window.page.apartments = [];
@@ -25,11 +24,13 @@
   var formElementElement = document.querySelectorAll('.ad-form__element');
 
   var getButtonPinPositionDefault = function () {
-    return (inputAddressElement.value = (parseInt(buttonComputedStyle.left, 10) + PIN_WIDTH / 2) + ' , ' + (parseInt(buttonComputedStyle.top, 10) + PIN_HEIGHT / 2));
+    inputAddressElement.value = (parseInt(buttonComputedStyle.left, 10) + PIN_WIDTH / 2) + ' , ' + (parseInt(buttonComputedStyle.top, 10) + PIN_HEIGHT / 2);
+    return inputAddressElement.value;
   };
 
   var deactivatePage = function (error) {
     getButtonPinPositionDefault();
+    mapPinMainElement.style = 'left: 570px; top: 375px';
     adFormHeaderElement.setAttribute('disabled', 'true');
     for (var i = 0; i < formElementElement.length; i++) {
       formElementElement[i].setAttribute('disabled', 'true');
@@ -61,6 +62,7 @@
   var getPageDefault = function () {
     deactivatePage();
     mapElement.classList.add('map--faded');
+    adFormElement.classList.add('ad-form--disabled');
   };
 
   getPageDefault();
@@ -109,6 +111,10 @@
     activatePage();
     load(getPinsFromServer, showError);
 
+    var Coordinate = function (x, y) {
+      this.x = x;
+      this.y = y;
+    };
 
     var startCoords = new Coordinate(evt.clientX, evt.clientY);
 
@@ -148,15 +154,15 @@
       inputAddressElement.value = (parseInt(buttonComputedStyle.left, 10) + PIN_WIDTH / 2) + ' , ' + (parseInt(buttonComputedStyle.top, 10) + PIN_HEIGHT + MAP_PIN_TRIANGLE_HEIGHT);
     };
 
-    var onMouseup = function (upEvt) {
+    var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
 
       document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseup);
+      document.removeEventListener('mouseup', onMouseUp);
     };
 
     document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseup);
+    document.addEventListener('mouseup', onMouseUp);
   };
 
   mapPinMainElement.addEventListener('mousedown', onMouseDown);

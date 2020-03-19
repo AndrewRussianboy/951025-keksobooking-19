@@ -77,6 +77,14 @@
     }
   });
 
+  guestsNumberElement.addEventListener('change', function () {
+    if (compareRoomsWithGuests(+selectRoomElement.value, +guestsNumberElement.value)) {
+      guestsNumberElement.setCustomValidity('');
+    } else {
+      guestsNumberElement.setCustomValidity('Количество гостей не соответствует количеству комнат');
+    }
+  });
+
   var formElement = document.querySelector('.ad-form');
 
   var showSuccessPopup = function () {
@@ -108,20 +116,20 @@
       successPopupElement.remove();
     };
 
-    var removeSuccessPopupEsc = function (evt) {
+    var onPopupEscRemove = function (evt) {
       isEscEvent(evt, removeSuccessPopup);
     };
 
-    var removeSuccessPopupClick = function () {
+    var onPopupClickRemove = function () {
       removeSuccessPopup();
     };
 
     if (successPopupElement) {
-      document.addEventListener('keydown', removeSuccessPopupEsc);
-      document.addEventListener('click', removeSuccessPopupClick);
+      document.addEventListener('keydown', onPopupEscRemove);
+      document.addEventListener('click', onPopupClickRemove);
     } else {
-      document.removeEventListener('keydown', removeSuccessPopupEsc);
-      document.removeEventListener('click', removeSuccessPopupClick);
+      document.removeEventListener('keydown', onPopupEscRemove);
+      document.removeEventListener('click', onPopupClickRemove);
     }
   };
 

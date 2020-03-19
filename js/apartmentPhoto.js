@@ -7,23 +7,25 @@
   fileChooserElement.addEventListener('change', function () {
     var fileList = fileChooserElement.files;
 
-    var loadImage = function (aImageElement) {
+    var onImageLoad = function (aImageElement) {
       return function (e) {
         aImageElement.src = e.target.result;
       };
     };
 
-    fileList.forEach(function (item) {
+    for (var i = 0; i < fileList.length; i++) {
+      var file = fileList[i];
+
       var reader = new FileReader();
 
       var imageElement = document.createElement('img');
       imageElement.style = 'width: 70px; height: 70px; border-radius: 5px;';
       previewElement.append(imageElement);
 
-      reader.addEventListener('load', loadImage(imageElement));
+      reader.addEventListener('load', onImageLoad(imageElement));
 
-      reader.readAsDataURL(item);
-    });
+      reader.readAsDataURL(file);
+    }
 
   });
 })();

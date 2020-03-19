@@ -16,21 +16,8 @@
     }
   };
 
-  var checkIsSubArray = function (haystack, needle) {
-    return needle.every(function (item) {
-      return haystack.includes(item);
-    });
-  };
-
-  var Coordinate = function (x, y) {
-    this.x = x;
-    this.y = y;
-  };
-
   window.util = {
     isEscEvent: isEscEvent,
-    isEnterEvent: isEnterEvent,
-    checkIsSubArray: checkIsSubArray,
-    Coordinate: Coordinate
+    isEnterEvent: isEnterEvent
   };
 })();
