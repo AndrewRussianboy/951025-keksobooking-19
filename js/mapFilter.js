@@ -4,6 +4,10 @@
   var LOW_PRICE = 10000;
   var HIGH_PRICE = 50000;
   var NUMBER_OF_RENDERED_PINS = 5;
+  var LOW_PRICE_TEXT = 'low';
+  var MIDDLE_PRICE_TEXT = 'middle';
+  var HIGH_PRICE_TEXT = 'high';
+  var ANY_PRICE_TEXT = 'any';
 
   var renderApartments = window.pinsRender.renderApartments;
   var removePins = window.pinsRender.removePins;
@@ -18,31 +22,31 @@
 
   var typeOfHouseElement = document.querySelector('#housing-type');
   var filterByType = function (item) {
-    return (typeOfHouseElement.value === item.offer.type || typeOfHouseElement.value === 'any');
+    return (typeOfHouseElement.value === item.offer.type || typeOfHouseElement.value === ANY_PRICE_TEXT);
   };
 
   var priceElement = document.querySelector('#housing-price');
   var filterByPrice = function (item) {
     switch (priceElement.value) {
-      case 'middle':
+      case MIDDLE_PRICE_TEXT:
         return item.offer.price > LOW_PRICE && item.offer.price < HIGH_PRICE;
-      case 'low':
+      case LOW_PRICE_TEXT:
         return item.offer.price < LOW_PRICE;
-      case 'high':
+      case HIGH_PRICE_TEXT:
         return item.offer.price > HIGH_PRICE;
       default:
-        return priceElement.value === 'any';
+        return priceElement.value === ANY_PRICE_TEXT;
     }
   };
 
   var roomsQuantityElement = document.querySelector('#housing-rooms');
   var filterByRoomQuantity = function (item) {
-    return +roomsQuantityElement.value === +item.offer.rooms || roomsQuantityElement.value === 'any';
+    return +roomsQuantityElement.value === +item.offer.rooms || roomsQuantityElement.value === ANY_PRICE_TEXT;
   };
 
   var guestsQuantityElement = document.querySelector('#housing-guests');
   var filterByGuestQuantity = function (item) {
-    return +guestsQuantityElement.value === +item.offer.guests || guestsQuantityElement.value === 'any';
+    return +guestsQuantityElement.value === +item.offer.guests || guestsQuantityElement.value === ANY_PRICE_TEXT;
   };
 
   var updateApartments = function () {

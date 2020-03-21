@@ -6,6 +6,7 @@
   var MIN_FLAT_PRICE = 1000;
   var MIN_HOUSE_PRICE = 5000;
   var MIN_PALACE_PRICE = 10000;
+  var GUESTS_MORE_THAN_ROOMS_TEXT = 'Количество гостей не соответствует количеству комнат';
 
   var upload = window.backend.upload;
   var getButtonPinPositionDefault = window.page.getButtonPinPositionDefault;
@@ -73,7 +74,7 @@
     if (compareRoomsWithGuests(+selectRoomElement.value, +guestsNumberElement.value)) {
       guestsNumberElement.setCustomValidity('');
     } else {
-      guestsNumberElement.setCustomValidity('Количество гостей не соответствует количеству комнат');
+      guestsNumberElement.setCustomValidity(GUESTS_MORE_THAN_ROOMS_TEXT);
     }
   });
 
@@ -81,7 +82,7 @@
     if (compareRoomsWithGuests(+selectRoomElement.value, +guestsNumberElement.value)) {
       guestsNumberElement.setCustomValidity('');
     } else {
-      guestsNumberElement.setCustomValidity('Количество гостей не соответствует количеству комнат');
+      guestsNumberElement.setCustomValidity(GUESTS_MORE_THAN_ROOMS_TEXT);
     }
   });
 
@@ -166,9 +167,16 @@
   });
 
   var adFormResetElement = document.querySelector('.ad-form__reset');
+
   adFormResetElement.addEventListener('click', function () {
     getPageDefault();
     cleanPage();
+    document.querySelector('.ad-form').classList.add('ad-form--disabled');
+    document.querySelector('.ad-form-header__preview img').src = 'img/muffin-grey.svg';
+    var adFormFoto = document.querySelector('.ad-form__photo img');
+    if (adFormFoto) {
+      adFormFoto.remove();
+    }
   });
 
 })();

@@ -62,13 +62,13 @@
   var getPageDefault = function () {
     deactivatePage();
     mapElement.classList.add('map--faded');
-    adFormElement.classList.add('ad-form--disabled');
   };
 
   getPageDefault();
 
   var getButtonPinPositionActive = function () {
-    return (inputAddressElement.value = (parseInt(buttonComputedStyle.left, 10) + PIN_WIDTH / 2) + ' , ' + (parseInt(buttonComputedStyle.top, 10) + PIN_HEIGHT + MAP_PIN_TRIANGLE_HEIGHT));
+    inputAddressElement.value = (parseInt(buttonComputedStyle.left, 10) + PIN_WIDTH / 2) + ' , ' + (parseInt(buttonComputedStyle.top, 10) + PIN_HEIGHT + MAP_PIN_TRIANGLE_HEIGHT);
+    return inputAddressElement.value;
   };
 
   var activatePage = function () {
